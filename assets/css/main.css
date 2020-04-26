@@ -3,6 +3,7 @@
 @import url('./burger-x.css');
 @import url('./cmps/nav-bar.css');
 @import url('./apps/keep/keep-main.css');
+@import url('./apps/email/email-main.css');
 /* BASICS */
 * {
     box-sizing: border-box;
