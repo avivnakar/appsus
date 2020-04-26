@@ -1,0 +1,94 @@
+.nav-bar .toggler {
+    position: absolute;
+    z-index: 2;
+}
+
+.burger-container {
+    width: 23px;
+    height: 16px;
+    position: relative;
+    bottom: -50%;
+    /* display: flex; */
+    align-items: center;
+    /* justify-self: center; */
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    /* top:-40px;
+    left: -40px; */
+    /* background-color: lawngreen; */
+}
+
+.burger-container>div:before, .burger-container>div:after, .burger-container>div {
+    position: relative;
+    display: block;
+    top: 0px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #fff;
+    opacity: 1;
+    border-radius: 1px;
+    transform: rotate(0);
+    transition: .3s ease-in-out;
+    transform-origin: left center;
+}
+
+.burger-container>div:before, .burger-container>div:after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 100%;
+    background-color: inherit;
+}
+
+.burger-container>div:before {
+    top: 7px;
+}
+
+.burger-container>div:after {
+    top: 14px;
+}
+
+/* breakpoint hide = 1023W, grow, 767 */
+
+.toggler:checked+.burger-container div {
+    left: 4px;
+    transform: rotate(45deg);
+}
+
+.toggler:checked+.burger-container div:before {
+    
+    width: 0;
+    opacity: 0;
+}
+
+.toggler:checked+.burger-container div:after {
+    transform: rotate(-90deg);
+    left: 50%;
+    top: 8px;
+}
+
+@media (min-width:768px) {
+    .burger-container {
+        height: 18px;
+        width: 27px;
+    }
+    .burger-container>div:before {
+        top: -8px;
+    }
+    .burger-container>div {
+        top: 0;
+    }
+    .burger-container>div:after {
+        top: 8px;
+    }
+}
+
+@media (min-width:1024px) {
+    .burger-container {
+        display: none;
+    }
+}

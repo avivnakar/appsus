@@ -8,18 +8,18 @@ import EmailList from '../cmps/EmailList.jsx'
 import EmailNav from '../cmps/EmailNav.jsx'
 import EmailStatus from '../cmps/EmailStatus.jsx'
 
-function DynamicMainCmp({ currSection, emails }) {
-    console.log('section', currSection, 'emails', emails)
-
-    switch (currSection) {
-        case '':
-            return <EmailList emails={emails} />
-        case 'compose':
-            return <EmailCompose />
-        default:
-            return <EmailDetails emails={emails} />
-    }
-}
+// export function DynamicMainCmp(props){
+//     const { currSection, emails }=props
+//     console.log('section', currSection, 'emails', emails)
+//     switch (currSection) {
+//         case '':
+//             return <EmailList emails={emails} />
+//         case 'compose':
+//             return <EmailCompose />
+//         default:
+//             return <EmailDetails emails={emails} />
+//     }
+// }
 
 export class EmailApp extends React.Component {
     state = {
@@ -28,6 +28,7 @@ export class EmailApp extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.match.params.currSection);
         this.loadEmails()
     }
 
@@ -47,8 +48,7 @@ export class EmailApp extends React.Component {
                     <EmailNav></EmailNav>
                     <EmailStatus />
                 </section>
-                {/* <DynamicMainCmp currSection={this.props.match.params.currSection} emails={emails}  /> */}
-                {console.log(this.props.match.params.currSection)};
+                <DynamicMainCmp currSection={this.props.match.params.currSection} emails={emails}  />
             </section>
         )
     }

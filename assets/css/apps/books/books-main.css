@@ -1,0 +1,206 @@
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #18191a;
+    color: white;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+.logo {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+a, a *, button {
+    cursor: pointer;
+}
+a,a:active{
+    text-decoration: none;
+    color: unset;
+}
+/* 
+nav color palette:
+icon:
+#e4e6eb
+padding:
+#3a3b3c
+padding:hover:
+#4e4f50
+icon:active:
+#2f86ff
+
+burger:#b0b3b8  
+burger:active:#2d88ff
+
+
+button {
+    cursor: pointer;
+}
+
+/* LAYOUT */
+
+/* COMPONENTS */
+
+.book-preview {
+    text-align: center;
+    background-color: #242526;
+    width: 140px;
+    border-radius: 20px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.book-preview img {
+    max-width: 130px;
+    cursor: pointer;
+}
+
+.book-preview h6 {
+    margin-top: 0.8em;
+    height: 1.4em;
+}
+
+.chartreuse {
+    color: chartreuse;
+}
+
+.red {
+    color: red;
+}
+
+.book-list {
+    overflow-x: scroll;
+    scrollbar-color: #fff6 #242526;
+}
+
+.book-list a {
+    color: unset;
+    text-decoration: unset;
+}
+
+.flip, .flip .book-preview {
+    transform: rotateX(180deg);
+}
+
+.book-details {
+    background-color: #242526;
+    /* border: 1px solid white; */
+    border-radius: 15px;
+    width: 500px;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.book-details .sale {
+    background-color: yellow;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 100%;
+    float: right;
+    transform: rotate(15deg);
+}
+
+.book-details .toggle-read {
+    display: inline;
+    background: none;
+    color: inherit;
+    text-decoration: underline;
+    border: 0;
+}
+
+.toggle-read:hover {
+    opacity: .2;
+}
+
+.toggle-read:focus {
+    outline: none;
+}
+
+.screen {
+    background-color: #18191acc;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.screen a {
+    color: unset;
+    text-decoration: unset;
+    text-align: center;
+    line-height: 200%;
+}
+
+.close-btn {
+    border-radius: 100%;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: larger;
+    border: none;
+    position: absolute;
+    left: 5px;
+    background-color: #fff6;
+    color: #18191a;
+}
+
+.close-btn:hover {
+    background-color: #fffd;
+}
+
+.close-btn::after {
+    content: '⨉';
+}
+
+.book-filter input {
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 5px;
+}
+
+.book-filter input::placeholder {
+    color: #fff6;
+}
+
+.book-filter div {
+    display: inline-block;
+    background: #3a3b3c;
+    border-radius: 2rem;
+    padding-inline-start: .9375rem;
+}
+
+/* 
+.book-preview{}
+.long-txt{}
+*/
+
+/* Main content */
+
+/* HELPERS */
+
+/* flex-helpers */
+
+@media (min-width:768px) {}
+
+@media (min-width:1024px) {
+    .nav-bar nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+}

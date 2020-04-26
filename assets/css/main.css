@@ -9,6 +9,7 @@
 @import url('./cmps/nav-bar.css');
 @import url('./apps/keep/keep-main.css');
 @import url('./apps/email/email-main.css');
+@import url('./apps/books/books-main.css');
 /* BASICS */
 
 * {
@@ -44,5 +45,31 @@ body {
 /* LAYOUT */
 
 /* Main content */
+.logo {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
 
 /* flex-helpers */
+
+/* @media (min-width:768px) {
+    .burger-container {
+        height: 18px;
+        width: 27px;
+    }
+    .burger-container div:nth-child(1) {
+        top: 0;
+    }
+    .burger-container div:nth-child(2) {
+        top: 8px;
+    }
+    .burger-container div:nth-child(3) {
+        top: 16px;
+    }
+}
+@media (min-width:1024px){
+    .burger-container{
+        display: none;
+    }
+} */

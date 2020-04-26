@@ -5,7 +5,7 @@ import bookService from '../services/bookService.js';
 import { BookFilter } from '../cmps/BookFilter.jsx';
 import { BookList } from '../cmps/BookList.jsx';
 
-export default class BookApp extends React.Component {
+export class BookApp extends React.Component {
     state = {
         books: [],
         filterBy: null,
