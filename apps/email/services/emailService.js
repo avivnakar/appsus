@@ -4,11 +4,11 @@ import utilService from '../../../services/utilService.js'
 const _KEY = 'emails'
 
 const gDefaultEmails = [
-    _createEmail( 'baby@gmail.coo' , 'Wassap?', 'Pick up!', false),
-    _createEmail( 'baby@gmail.coo' , 'cats', 'grandma shark ttotoototot dododo ododo ododod', false),
-    _createEmail( 'baby@gmail.coo' , 'dogs', 'grandpa shark ttotoototot oododod oodododoo ', true),
-    _createEmail( 'baby@gmail.coo' , 'flowers', 'mommy shark ttotootototo dododo ododo ododod', false),
-    _createEmail( 'baby@gmail.coo' , 'bye', 'baby shark ttotoototot dododo ododo ododod', true)
+    _createEmail( 'baby@gmail.coo' , 'daddy', 'daddy shark ttotoototot dododo', false),
+    _createEmail( 'shark@gmail.coo' , 'grandma', 'grandma shark ttotoototot dododo ododo ododod', false),
+    _createEmail( 'aadd1@gmail.coo' , 'grandpa', 'grandpa shark ttotoototot oododod oodododoo ', true),
+    _createEmail( '11s@gmail.coo' , 'mommy', 'mommy shark ttotootototo dododo ododo ododod', false),
+    _createEmail( 'bb2@gmail.coo' , 'baby', 'baby shark ttotoototot dododo ododo ododod', true)
 ]
 
 var gEmails = null

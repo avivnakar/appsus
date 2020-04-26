@@ -1,7 +1,8 @@
 const { Link } = ReactRouterDOM
 import emailService from '../services/emailService.js'
 import EmailList from '../cmps/EmailList.jsx'
-
+import EmailNav from '../cmps/EmailNav.jsx'
+import EmailStatus from '../cmps/EmailStatus.jsx'
 
 export class EmailApp extends React.Component {
     state = {
@@ -21,10 +22,14 @@ export class EmailApp extends React.Component {
 
     render() {
         const {emails}=this.state
-        return (
-            <section>
-                {emails &&
-                    <EmailList emails={emails} />}
+        return ((!emails)? <p>loading...</p>:
+            <section className="email-app">
+                <section className="side-bar">
+                <Link to= '/mail/compose'>+ Compose </Link>
+                <EmailNav></EmailNav>
+                <EmailStatus/>
+                </section>
+                <EmailList emails={emails} />
             </section>
         )
     }

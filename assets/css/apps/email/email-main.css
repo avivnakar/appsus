@@ -1,0 +1,32 @@
+
+
+.email-app{
+    display: flex;
+}
+
+.side-bar{
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.email-list{
+    flex-grow: 1;
+}
+
+.email-sender{
+    width:150px;
+}
+
+.email-preview div{
+    display:flex;
+}
+
+.email-body{
+    color:lightgrey;
+    flex-grow: 1;
+}
+
+.email-sent-at{
+    width:50px;
+}
