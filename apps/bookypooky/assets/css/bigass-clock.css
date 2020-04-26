@@ -1,0 +1,24 @@
+.time {
+    font-family: "Neue Haas Grotesk Text Pro";
+    font-size: 10.5rem;
+    user-select: none;
+    font-weight: 500;
+    letter-spacing: -0.3125rem;
+    margin: 0;
+    padding: 0.67em;
+    transition: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/*
+componentDidMount(){
+        this.interval=setInterval((time) => {
+        this.setState({time:time()})
+    }, 1000,this.moment);
+}
+ */
+
+ /*
+ render(){
+     <Time className="time"time={this.state.time}/>
+ } 
+  */
