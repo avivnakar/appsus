@@ -9,6 +9,18 @@ function makeId(length=3) {
     return text;
 }
 
-export default {
-    makeId
+/**
+ * @param {any} id object attribute e.g. obj.id
+ * @param {object[]} arr arr = [{},{},...]
+ * @returns {number}  index of obj i.e. obj.id===id
+ *
+ *  */
+function getIdxById(id,arr)
+{
+    return arr.findIndex(obj => obj.id===id)
 }
+export default {
+    makeId,
+    getIdxById
+}
+
