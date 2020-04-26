@@ -1,6 +1,7 @@
 import Home from './pages/Home.jsx'
 import {AboutUs} from './pages/AboutUs.jsx'
 import {EmailApp} from './apps/email/pages/EmailApp.jsx'
+import EmailDetails from './apps/email/pages/EmailDetails.jsx'
 // import BookApp from './apps/books/pages/BookApp.jsx'
 // import BooksApp from '.apps/books/pages/BookApp.jsx'
 import {KeepApp} from './apps/keep/pages/KeepApp.jsx'
@@ -21,6 +22,7 @@ export class Appsus extends React.Component {
                     <Switch>
                         <Route component={AboutUs} path="/about" />
                         <Route component={EmailApp} path="/mail" />
+                        <Route component={EmailDetails} path="/mail/:theEmailId" />
                         {/* <Route component={BooksApp} path="/books" /> */}
                         <Route component={KeepApp} path="/keep" />
                         <Route component={Home} path="/" />

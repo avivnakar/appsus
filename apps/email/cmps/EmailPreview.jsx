@@ -4,10 +4,9 @@ const { Link } = ReactRouterDOM
 export default class EmailPreview extends React.Component {
     state = {
         isExpanded: false,
-        readClass: null//add read/not read to effect bold or regular font
+        readClass: 'un-read'//add read/not read to effect bold or regular font
     }
 
-    //getTime = () => {}//will get sentAt and translate to >1hr ago or date if over 24h
 
     render() {
         //todo: with css limit the size of txt and use over flow hidden
@@ -25,7 +24,7 @@ export default class EmailPreview extends React.Component {
                     
                 </div>
                 <button hidden={!this.state.isExpanded} >delete</button>
-                <Link  hidden={!this.state.isExpanded} to={`/email/${email.id}/${email.subject}`}>full screen </Link>
+                <Link  hidden={!this.state.isExpanded} to={`/mail/${email.id}`}>full screen </Link>
             </article>
         )
     }

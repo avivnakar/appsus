@@ -4,6 +4,10 @@
     display: flex;
 }
 
+.email-app button{
+    background-color: orchid;
+}
+
 .side-bar{
     width: 150px;
     display: flex;

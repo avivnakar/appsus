@@ -15,12 +15,14 @@ var gEmails = null
 _createEmails();
 
 export default {
-    query
+    query,
+    getById,
+    removeById
 }
 
 function _createEmails() {
     gEmails = storageService.load(_KEY, gDefaultEmails)
-    storageService.store(_KEY, gEmails)
+    save()
 }
 
 function _createEmail(sender, subject, body, isRead) {
@@ -37,4 +39,17 @@ function _createEmail(sender, subject, body, isRead) {
 function query() {
     var emails = gEmails;
     return Promise.resolve(emails);
+}
+
+function getById(emailId){
+    return gEmails.find(email=>email.id===emailId)
+}
+
+function removeById(emailId){
+    const idx= gEmails.findIndex(email=>email.id===emailId)
+    gEmails.splice(idx,1)
+}
+
+function save(){
+    storageService.store(_KEY, gEmails)
 }
