@@ -1,8 +1,14 @@
+@import url('./apps/keep/cmps/note.css');
+
+/* @import url('./apps/keep/cmps/note-list.css'); */
+
 /* BASICS */
 
 
 /* LAYOUT */
-
+.note-list{
+    /* grid-template-columns: repeat(5,1fr); */
+}
 /* COMPONENTS */
 
 /* Main content */

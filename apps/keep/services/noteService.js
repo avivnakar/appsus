@@ -8,6 +8,7 @@ export const noteService = {
     addContent,
     removeNote,
     removeContent,
+    togglePin,
     _createNote,
     _createContent
 }
@@ -20,8 +21,8 @@ const gDefaultNotes = [
         style: {
             backgroundColor: 'inherit',
         },
-        url:'http://some-img/me',
-        mediaType:'image',
+        url: 'http://some-img/me',
+        mediaType: 'image',
         labels: [],
         currIsTodo: false,
         contents: [
@@ -35,7 +36,7 @@ const gDefaultNotes = [
             backgroundColor: 'inherit',
         },
         url: 'https://youtu.be/dQw4w9WgXcQ',
-        mediaType:'vid',
+        mediaType: 'vid',
         labels: [],
         currIsTodo: false,
         contents: [
@@ -48,8 +49,8 @@ const gDefaultNotes = [
         style: {
             backgroundColor: 'inherit',
         },
-        url:null,
-        mediaType:'vid',
+        url: null,
+        mediaType: 'vid',
         labels: [],
         currIsTodo: false,
         contents: [
@@ -81,18 +82,18 @@ _createNotes();
 console.log(gNotes);
 
 function _createNote() {
-    const id= utilService.makeId(4);
+    const id = utilService.makeId(4);
     return {
         id: utilService.makeId(4),
-        title:'',
+        title: '',
         isPinned: false,
         style: {
             backgroundColor: 'inherit',
         },
-        url:null,
-        mediaType:null,
+        url: null,
+        mediaType: null,
         labels: [],
-        currIsTodo: false,
+        currIsTodo: false,//??
         contents: [
             _createContent(id, false)
         ]
@@ -100,7 +101,7 @@ function _createNote() {
 }
 function _createNotes() {
     gNotes = storageService.load(NOTES_KEY, gDefaultNotes);
-    stoarageService.store(NOTES_KEY, gNotes);
+    _save();
 }
 function _createContent(id, isTodo) {
     return {
@@ -116,16 +117,19 @@ function _createContent(id, isTodo) {
 function addNote() {
     const note = _createNote();
     gNotes.push(note)
+    _save();
     return Promise.resolve(note.id)
 }
 function addContent(id, isTodo = false) {
     const content = _createContent(id, isTodo);
     gNotes.push(note)
+    _save();
     return Promise.resolve(content.id)
 }
 function removeNote(id) {
     const idx = utilService.getIdxById(id, gNotes);
-    gNotes.splice(idx,1)
+    gNotes.splice(idx, 1);
+    _save();
     return Promise.resolve()
 }
 function removeContent(id) {
@@ -133,7 +137,8 @@ function removeContent(id) {
         .then(
             note => {
                 const idx = utilService.getIdxById(id, note.contents);
-                note.contents.splice(idx, 1)
+                note.contents.splice(idx, 1);
+                _save();
             })
 }
 
@@ -152,10 +157,22 @@ function query(filterBy) {
     return Promise.resolve(gNotes);
 }
 function getNoteById(id) {
-    note = gNotes.find(note => note.id === id);
+    const note = gNotes.find(note => note.id === id);
     return Promise.resolve(note)
 }
+function togglePin(id) {
+    return getNoteById(id)
+        .then(note => {
+            console.log(note);
+            note.isPinned = !note.isPinned
+            _save();
+        })
 
+}
+function _save() {
+    stoarageService.store(NOTES_KEY, gNotes);
+
+}
 // function getContentById(id) {
 //     getNoteById(id.slice(0,4))
 //     .then(

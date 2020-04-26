@@ -1,0 +1,5 @@
+.note{
+    background-color: lightslategray ;
+    min-height: 250px;
+    grid-column: span 1;
+}
