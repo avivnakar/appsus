@@ -1,0 +1,31 @@
+@import url('./burger-x.css');
+@import url('./bigass-clock.css');
+@import url('./list-helpers.css');
+@import url('./flex-helpers.css');
+
+/* BASICS */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin:0;
+    background-color: #18191a;
+    color: white;
+}
+
+
+
+/* LAYOUT */
+
+/* COMPONENTS */
+
+/* Main content */
+
+/* HELPERS */
+
+/* flex-helpers */
