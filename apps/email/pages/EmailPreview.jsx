@@ -15,14 +15,14 @@ export default class EmailPreview extends React.Component {
         const { email } = this.props
         return (
             <article className={this.state.emailClass}>
-                <ul onClick={() => {
+                <div onClick={() => {
                     this.setState(({ isExpanded }) => ({ isExpanded: !isExpanded }))
                 }}>
-                    <li>email.sender</li>
-                    <li>email.subject</li>
-                    <li>email.body</li>
-                    {/* <li>{this.getTime()}</li> */}
-                </ul>
+                    {email.sender}
+                    {email.subject}
+                    {email.body}
+                    {/* <p>{this.getTime()}</p> */}
+                </div>
                 <button hidden={!this.state.isExpanded} >delete</button>
                 <Link  hidden={!this.state.isExpanded} to={`/email/${email.id}/${email.subject}`}>full screen </Link>
             </article>

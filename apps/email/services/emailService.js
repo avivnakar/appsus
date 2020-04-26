@@ -1,43 +1,39 @@
-import storageService from '../services/storageService.js'
-import utilService from '../services/utilService.js'
+import storageService from '../../../services/storageService.js'
+import utilService from '../../../services/utilService.js'
 
 const _KEY = 'emails'
 
-gDefaultEmails = [{sender:'baby', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
-{ sender:{senderName:'baby',senderEmail:'baby@gmail.coo'},subject: 'cats', body: 'grandma baby shark ttotoototot oododod oodododoo dododo ododo ododod', isRead: false, sentAt: 1551133930595 },
-{ sender:{senderName:'baby',senderEmail:'baby@gmail.coo'}, subject: 'dogs', body: 'grandpa shark ttotoototot oododod oodododoo dododo ododo ododod', isRead: true, sentAt: 1551133930596 },
-{ sender:{senderName:'baby',senderEmail:'baby@gmail.coo'}, subject: 'flowers', body: 'mommy shark ttotoototot oododod oodododoo dododo ododo ododod', isRead: false, sentAt: 1551133930597 },
-{ sender:{senderName:'baby',senderEmail:'baby@gmail.coo'}, subject: 'bye', body: 'baby shark ttotoototot oododod oodododoo dododo ododo ododod', isRead: true, sentAt: 1551133930598 }]
+const gDefaultEmails = [
+    _createEmail( 'baby@gmail.coo' , 'Wassap?', 'Pick up!', false),
+    _createEmail( 'baby@gmail.coo' , 'cats', 'grandma shark ttotoototot dododo ododo ododod', false),
+    _createEmail( 'baby@gmail.coo' , 'dogs', 'grandpa shark ttotoototot oododod oodododoo ', true),
+    _createEmail( 'baby@gmail.coo' , 'flowers', 'mommy shark ttotootototo dododo ododo ododod', false),
+    _createEmail( 'baby@gmail.coo' , 'bye', 'baby shark ttotoototot dododo ododo ododod', true)]
 
 var gEmails = null
 _createEmails();
 
 export default {
-    query,
-    save,
-    remove,
-    getById,
-    getNextPrevEmail
+    query
 }
 
 function _createEmails() {
     gEmails = storageService.load(_KEY, gDefaultEmails)
     storageService.store(_KEY, gEmails)
-
 }
 
-function _createEmail(sender,subject, body, isRead) {
+function _createEmail(sender, subject, body, isRead) {
     return {
         sender,
-        subject, 
-        body, 
+        subject,
+        body,
         isRead,
-        id: utilService.makeId(),
+        id: utilService.makeId(5),
         sentAt: Date.now()
     }
 }
 
 function query() {
     var emails = gEmails;
-        return Promise.resolve(emails);
+    return Promise.resolve(emails);
 }

@@ -1,6 +1,6 @@
 import Home from './pages/Home.jsx'
 import {AboutUs} from './pages/AboutUs.jsx'
-import EmailApp from './apps/email/pages/EmailApp.jsx'
+import {EmailApp} from './apps/email/pages/EmailApp.jsx'
 // import BookApp from './apps/books/pages/BookApp.jsx'
 // import BooksApp from '.apps/books/pages/BookApp.jsx'
 import {KeepApp} from './apps/keep/pages/KeepApp.jsx'
