@@ -2,8 +2,8 @@ const { NavLink } = ReactRouterDOM
 export class NavBar extends React.Component {
     render() {
         return (
-            <nav className="nav-bar clean-list">
-                <ul>
+            <nav className="nav-bar">
+                <ul className="clean-list">
                     <button>burger</button>
                     <li><NavLink exact to="/">Home</NavLink></li>
                     <li><NavLink exact to="/about">About Us</NavLink></li>
@@ -12,6 +12,7 @@ export class NavBar extends React.Component {
                     <li><NavLink exact to="/book">Books</NavLink></li>
                     <li><NavLink exact to="/keep">Keep</NavLink></li>
                 </ul>
+                <hr/>
             </nav>
         );
     }

@@ -1,11 +1,25 @@
-@import url('./burger-x.css');
 @import url('./bigass-clock.css');
 @import url('./list-helpers.css');
 @import url('./flex-helpers.css');
-
+@import url('./burger-x.css');
+@import url('./cmps/nav-bar.css');
+@import url('./apps/keep/keep-main.css');
 /* BASICS */
 * {
     box-sizing: border-box;
+}
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+
+a, a *, button {
+    cursor: pointer;
+    color: inherit;
+}
+
+a,a:active{
+    text-decoration: none;
 }
 
 html {
@@ -17,7 +31,6 @@ body {
     background-color: #18191a;
     color: white;
 }
-
 
 
 /* LAYOUT */
