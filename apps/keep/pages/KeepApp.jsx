@@ -17,7 +17,7 @@ import { noteService } from '../services/noteService.js'
 export class KeepApp extends React.Component {
     state = {
         notes: null,
-        filterBy: null
+        input: null
     }
     componentDidMount() {
         this.loadNotes();
@@ -39,17 +39,49 @@ export class KeepApp extends React.Component {
         this.loadNotes();
     }
     onRemoveNote = () => {
-        noteService.Note().then(console.log('todo'));
+        noteService.removeNote().then(console.log('todo'));
         this.loadNotes();
     }
     onHandleInput = () => {
 
     }
+    onAddTitle = () => {
+        noteService.addTitle()
+    }
+    onAddContent = () => {
+        noteService.addContent()
+    }
+    onRemoveContent = () => {
+        noteService.removeContent()
+    }
+    onToggleTodoMode = () => {
+        noteService.unsetTodo()
+        noteService.setTodo()
+    }
+    onCheck = () => {
+        noteService.checkTodoAt()
+        noteService.unCheckTodo()
+
+    }
+    onFillNote = () => { }
+    onUpdateNoteTxt = (id, { target }) => {
+        noteService.setContentTxt(id, target.value);
+        this.loadNotes();
+    }
+    //  }
+    // x = {
+    //     addURL,
+    //     setTitle,
+    //     setMediaType,
+    //     setURL,
+    // }
     render() {
-        const{ onRemoveNote, onTogglePin, onHandleInput } = this
-        const noteFuncs= { onRemoveNote, onTogglePin, onHandleInput }
+        const { onRemoveNote, onTogglePin, onHandleInput, onAddTitle,
+            onAddContent, onRemoveContent, onToggleTodoMode, onCheck } = this
+        const contentFuncs = { onCheck, onRemoveContent }
+        const noteFuncs = { onRemoveNote, onTogglePin, onHandleInput, contentFuncs }
         const { notes } = this.state
-        
+
         return (
             <React.Fragment>
                 <NoteList notes={notes} onAddNote={this.onAddNote} noteFuncs={noteFuncs} />
