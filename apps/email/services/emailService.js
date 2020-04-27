@@ -44,16 +44,19 @@ function query() {
 }
 
 function getById(emailId){
-    return gEmails.find(email=>email.id===emailId)
+    console.log('get by id: got id:',emailId)
+    var email= gEmails.find(email=>email.id===emailId)
+    return Promise.resolve(email)
 }
 
 function getIdxById(id){
-    return gEmails.findIndex(email=>email.id===emailId)
+    return gEmails.findIndex(email=>email.id===id)
 }
 
 function removeById(emailId){
     const idx= getIdxById(emailId)
     gEmails.splice(idx,1)
+    save()
 }
 
 function save(){

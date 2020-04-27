@@ -5,6 +5,8 @@ const history = History.createBrowserHistory()
 
 import emailService from '../services/emailService.js'
 import EmailList from '../cmps/EmailList.jsx'
+import EmailDetails from '../pages/EmailDetails.jsx'
+import EmailCompose from '../pages/EmailCompose.jsx'
 import EmailNav from '../cmps/EmailNav.jsx'
 import EmailStatus from '../cmps/EmailStatus.jsx'
 
@@ -25,7 +27,7 @@ export class EmailApp extends React.Component {
     state = {
         emails: null,
         currCmp: 'emailList',
-        readPercent:null
+        readPercent: null
     }
 
     componentDidMount() {
@@ -38,26 +40,48 @@ export class EmailApp extends React.Component {
             .then(emails => {
                 this.setState({ emails })
             })
-            .then (this.percent)
+            .then(this.percent)
     }
 
-    percent= ()=>{
+    removeEmail = (id) => {
+        emailService.remove(id)
+        this.loadEmails()
+    }
+
+    percent = () => {
         var read = this.state.emails.length - emailService.countUnReadEmails()
-        var percent =100*read/this.state.emails.length
-        this.setState({ readPercent:percent })
+        var percent = 100 * read / this.state.emails.length
+        this.setState({ readPercent: percent })
     }
 
     render() {
-        const { emails,readPercent } = this.state
+        const { emails, readPercent } = this.state
         return ((!emails) ? <p>loading...</p> :
-            <section className="email-app">
-                <section className="side-bar">
-                    <Link to='/mail/compose'>+ Compose </Link>
-                    <EmailNav></EmailNav>
-                    {readPercent&&<EmailStatus percent={readPercent}/>}
+            <Router>
+                <section className="email-app">
+                    <section className="side-bar">
+                        <Link to='/mail/compose'>+ Compose </Link>
+                        <EmailNav></EmailNav>
+                        {readPercent && <EmailStatus percent={readPercent} />}
+                    </section>
+
+                    <Switch>
+                        <Route
+                            path='/mail/inbox'
+                            render={(props) => <EmailList {...props} emails={emails} />}
+                            />
+                        <Route component={EmailCompose} exact path="/mail/compose" />
+                        <Route component={EmailDetails} path="/mail/:theEmailId" />
+                    </Switch>
+
                 </section>
-                {/* <DynamicMainCmp currSection={this.props.match.params.currSection} emails={emails}  /> */}
-            </section>
+            </Router>
         )
     }
 }
+
+//"has potantial"
+
+{/* <Route component={EmailList} exact path="/mail/inbox" /> */}
+
+{/* <DynamicMainCmp currSection={this.props.match.params.currSection} emails={emails}  /> */ }
