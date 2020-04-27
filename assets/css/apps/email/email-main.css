@@ -1,5 +1,4 @@
 
-
 .email-app{
     display: flex;
 }
@@ -20,33 +19,9 @@
     color: black;
     height: 20px;
 }
+
 .email-status .read-percent{
     background-color: rgba(116, 25, 116, 0.5);
     display: inline-block;
     height: 20px;
-}
-
-.email-list{
-    flex-grow: 1;
-}
-
-.email-sender{
-    width:150px;
-}
-
-.email-preview div{
-    display:flex;
-}
-
-.email-body{
-    color:lightgrey;
-    flex-grow: 1;
-}
-
-.email-sent-at{
-    width:50px;
-}
-
-.not-read{
-    font-weight: bold;
 }

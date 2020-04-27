@@ -8,7 +8,10 @@ const gDefaultEmails = [
     _createEmail( 'shark@gmail.coo' , 'grandma', 'grandma shark ttotoototot dododo ododo ododod', false),
     _createEmail( 'aadd1@gmail.coo' , 'grandpa', 'grandpa shark ttotoototot oododod oodododoo ', true),
     _createEmail( '11s@gmail.coo' , 'mommy', 'mommy shark ttotootototo dododo ododo ododod', false),
-    _createEmail( 'bb2@gmail.coo' , 'baby', 'baby shark ttotoototot dododo ododo ododod', true)
+    _createEmail( 'bb2@gmail.coo' , 'baby', 
+    'baby shark ttotoototot dododo ododo ododod baby shark ttotoototot dododo ododo ododod baby shark ttotoototot dododo',
+     true)
+   
 ]
 
 var gEmails = null
