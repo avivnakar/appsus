@@ -1,53 +1,60 @@
 import { noteService } from '../services/noteService.js'
 // import {  } from '../cmps/Note.jsx'
 export class ContentList extends React.Component {
-    state = {
-        contents: null
-        }
+    // state = {
+    //     contents: null
+    //     }
     // constructor(props) {
     //     super(props);
+    // // }
+    // componentDidMount() {
+    // this.loadNotes();
     // }
-    componentDidMount() {
-    this.loadNotes();
-    }
-    loadNotes = ()=>{
-        noteService.query()
-            .then(notes => {
-                this.setState({ notes })
-                console.log(notes)
-            })
-    }
+    // loadNotes = ()=>{
+    //     noteService.query()
+    //         .then(notes => {
+    //             this.setState({ notes })
+    //             console.log(notes)
+    //         })
+    // }
 
-    onUpdateContent = () => {
-        noteService.addNote().then(console.log('todo'));
-        this.loadContent();    }
-    onRemoveContent = () => {
-        noteService.Note().then(console.log('todo'));
-        this.loadNotes();    }
+    // onUpdateContent = () => {
+    //     noteService.addNote().then(console.log('todo'));
+    //     this.loadContent();    }
+    // onRemoveContent = () => {
+    //     noteService.Note().then(console.log('todo'));
+    //     this.loadNotes();    }
     render() {
-        const { contents } = this.state;
+        const { contents ,contentFuncs} = this.props;
+        const {} =  contentFuncs
         return (
-            <React.Fragment>
-
             <div className="note-list grid columns-auto-fill">
-                {contents&&contents.length ? contents.map((content) => <DynamicContent key={content.id}  onRemoveContent={this.onTogglePin} content={content} />) : <article>ooof</article>}
+                {contents&&contents.length ? contents.map((content) => <DynamicContent key={content.id}  {...contentFuncs} content={content} />) : <article>ooof</article>}
             </div>
-            </React.Fragment>
         );
     }
 }
 
 function DynamicContent (props){
-    if(props.content.isToso){
-        return <Todo {...props}/>
-    }else{
+    console.log(props.content);
+    
+    // if(props.content.isTodo){
+    //     // return <Todo {...props}/>
+    // }else{
         return <PlainText {...props}/>
-    }
+    // }
 }
 function PlainText(props){
+    console.log(props);
+    
+    const {content}=props;
+    const change=(ev)=>{props.onUpdateNoteTxt(content.id,ev)}
     return (
     <li>
-        <input value={props.contents} type="text"/>)
+        <pre>
+        {JSON.stringify(content).split(',').join('\n').split(`"`).join('')}
+        </pre>
+        <input onChange={change} value={props.content.txt} type="text"/>)
         <button className="removeText">⨯</button>
     </li>
     )

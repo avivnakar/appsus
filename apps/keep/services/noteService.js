@@ -6,11 +6,19 @@ export const noteService = {
     getNoteById,
     addNote,
     addContent,
+    addTitle,
+    addURL,
     removeNote,
     removeContent,
     togglePin,
-    _createNote,
-    _createContent
+    setTitle,
+    setMediaType,
+    setURL,
+    setContentTxt,
+    setTodo,
+    unsetTodo,
+    checkTodoAt,
+    unCheckTodo,
 }
 
 const gDefaultNotes = [
@@ -80,7 +88,8 @@ const NOTES_KEY = 'NOA_KIREL_OMGGGG';
 var gNotes = null;
 _createNotes();
 console.log(gNotes);
-
+console.log('%c gNotes[2]', 'color:yellow;', gNotes[2])
+// _updateContent('ROFLJl', 'doneAt', Date.now());
 function _createNote() {
     const id = utilService.makeId(4);
     return {
@@ -101,6 +110,7 @@ function _createNote() {
 }
 function _createNotes() {
     gNotes = storageService.load(NOTES_KEY, gDefaultNotes);
+    if (!gNotes.length) gNotes = gDefaultNotes;
     _save();
 }
 function _createContent(id, isTodo) {
@@ -111,23 +121,43 @@ function _createContent(id, isTodo) {
         doneAt: null
     }
 }
-// function updateContent() {
 
-// }
 function addNote() {
     const note = _createNote();
     gNotes.push(note)
     _save();
     return Promise.resolve(note.id)
 }
+
+/**
+ * 
+ * @param {string} id of content
+ * @param {string} attr can be each of content obj attributes
+ * @param {*} value according to attr
+ */
+function _updateNote(id, attr, value) {
+    const idx = utilService.getIdxById(id, gNotes);
+    gNotes[idx][attr] = value;
+    _save();
+}
+
 function addContent(id, isTodo = false) {
     const content = _createContent(id, isTodo);
     gNotes.push(note)
     _save();
     return Promise.resolve(content.id)
 }
-function updateContent(params) {
-    con
+/**
+ * 
+ * @param {string} id of content
+ * @param {string} attr can be each of content obj attributes
+ * @param {*} value according to attr
+ */
+function _updateContent(id, attr, value) {
+    const idxC = getContentIdxById(id);
+    const idxN = utilService.getIdxById(id.slice(0, 4), gNotes);
+    gNotes[idxN].contents[idxC][attr] = value;
+    _save();
 }
 function removeNote(id) {
     const idx = utilService.getIdxById(id, gNotes);
@@ -161,9 +191,11 @@ function query(filterBy) {
     // })
     return Promise.resolve(gNotes);
 }
+function _getNoteById(id) {
+    return gNotes.find(note => note.id === id);
+}
 function getNoteById(id) {
-    const note = gNotes.find(note => note.id === id);
-    return Promise.resolve(note)
+    return Promise.resolve(_getNoteById(id))
 }
 function togglePin(id) {
     return getNoteById(id)
@@ -178,11 +210,71 @@ function _save() {
     stoarageService.store(NOTES_KEY, gNotes);
 
 }
-// function getContentIdxById(id) {
-//     return getNoteById(id.slice(0,4))
-//     .then(
-//         note=>{const idx=utilService.getIdxById(id,note.contents)
-//        return Promise.resolve(idx,) 
-//         }
-//     )
+function getContentIdxById(id) {
+    const note = _getNoteById(id.slice(0, 4))
+    return utilService.getIdxById(id, note.contents);
+}
+
+function setTodo(id) {
+    _updateContent(id, 'isTodo', true);
+    return Promise.resolve();
+}
+function unsetTodo(id) {
+    _updateContent(id, 'isTodo', false);
+    return Promise.resolve();
+}
+/**
+ * 
+ * @param {sting} id 
+ * @param {number} timestamp of check moment
+ */
+function checkTodoAt(id, timestamp) {
+    _updateContent(id, 'doneAt', timestamp);
+    return Promise.resolve();
+}
+function unCheckTodo(id) {
+    _updateContent(id, 'doneAt', null);
+    return Promise.resolve();
+}
+function setContentTxt(id,txt){
+    _updateContent(id,'txt',txt);
+}
+// {
+//     id: utilService.makeId(4),
+//         title: '',
+//             isPinned: false,
+//                 style: {
+//         backgroundColor: 'inherit',
+// },
+//     url: null,
+//         mediaType: null,
+//             labels: [],
+//                 currIsTodo: false,//??
+//                     contents: [
+//                         _createContent(id, false)
+//                     ]
 // }
+
+function setTitle(id, value) {
+    if (value === '') value = null;
+    _updateNote(id, 'title', value);
+    return Promise.resolve();
+}
+function setMediaType(id, value) {
+    if (value === undefined) value = null;
+    _updateNote(id, 'mediaType', value);
+    return Promise.resolve();
+}
+function setURL(id, value) {
+    if (value === '') value = null;
+    _updateNote(id, 'url', value);
+    return Promise.resolve();
+}
+function addTitle(id) {
+    _updateNote(id, 'title', '');
+    return Promise.resolve();
+}
+function addURL(id) {
+    _updateNote(id, 'url', '');
+    return Promise.resolve();
+}
