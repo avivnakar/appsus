@@ -34,3 +34,15 @@
 .email-sent-at{
     width:50px;
 }
+
+.email-status{
+    width: 100px;
+    background-color: rgb(231, 225, 225);
+    color: black;
+    height: 20px;
+}
+.email-status .read-percent{
+    background-color: rgba(116, 25, 116, 0.5);
+    display: inline-block;
+    height: 20px;
+}

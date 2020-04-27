@@ -17,7 +17,9 @@ _createEmails();
 export default {
     query,
     getById,
-    removeById
+    removeById,
+    countUnReadEmails,
+    toggleRead
 }
 
 function _createEmails() {
@@ -45,11 +47,29 @@ function getById(emailId){
     return gEmails.find(email=>email.id===emailId)
 }
 
+function getIdxById(id){
+    return gEmails.findIndex(email=>email.id===emailId)
+}
+
 function removeById(emailId){
-    const idx= gEmails.findIndex(email=>email.id===emailId)
+    const idx= getIdxById(emailId)
     gEmails.splice(idx,1)
 }
 
 function save(){
     storageService.store(_KEY, gEmails)
+}
+
+function countUnReadEmails(){
+    var unreadCount=0;
+    gEmails.forEach(email => {
+        if(!email.isRead) ++unreadCount});
+    console.log('unreadCount',unreadCount)
+    return unreadCount
+}
+
+function toggleRead(id){
+    const idx= getIdxById(emailId)
+    gEmails[idx].isRead=!isRead
+    save()
 }
