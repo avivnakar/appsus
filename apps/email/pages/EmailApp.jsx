@@ -26,7 +26,7 @@ import EmailStatus from '../cmps/EmailStatus.jsx'
 export class EmailApp extends React.Component {
     state = {
         emails: null,
-        currCmp: 'emailList',
+        // currCmp: 'emailList',
         readPercent: null
     }
 
@@ -66,10 +66,7 @@ export class EmailApp extends React.Component {
                     </section>
 
                     <Switch>
-                        <Route
-                            path='/mail/inbox'
-                            render={(props) => <EmailList {...props} emails={emails} />}
-                            />
+                        <Route path='/mail/inbox' component={()=> <EmailList emails={emails} unReadCount={emailService.countUnReadEmails()}/>}/>
                         <Route component={EmailCompose} exact path="/mail/compose" />
                         <Route component={EmailDetails} path="/mail/:theEmailId" />
                     </Switch>

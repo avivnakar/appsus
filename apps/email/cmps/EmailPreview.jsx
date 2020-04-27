@@ -1,27 +1,41 @@
+import emailService from "../services/emailService.js"
+
 const { Link } = ReactRouterDOM
 
 
 export default class EmailPreview extends React.Component {
     state = {
         isExpanded: false,
-        readClass: 'un-read'//add read/not read to effect bold or regular font
+        // isRead: null
     }
 
+    // emailClickedHandeler = (email) => {//make read class true , is expanded toggle
+    //     
+    // }
 
-    emailClickedHandeler = () => {//make read class true , is expanded toggle
-        this.setState({ isExpanded: !this.state.isExpanded, readClass:'read' })
-
-    }
+    // toggleIsRead
 
     render() {
         const { email } = this.props
+        var readClass=(email.isRead)? null:'not-read'
+        
         return (
             <article className="email-preview">
-                <div onClick={this.emailClickedHandeler}>
-                    <span className="email-sender">{email.sender}</span>
-                    <span className="email-subject">{email.subject}-</span>
-                    <span className="email-body">{email.body}</span>
-                    <span className="email-sent-at">{email.sentAt}</span>
+                <div className={readClass} onClick={()=>{
+                    if(!email.isRead) emailService.toggleIsRead(email.id)
+                    this.setState({ isExpanded: !this.state.isExpanded })
+                }}>
+                    <span className="sender">{email.sender}</span>
+                    <span className="subject">{email.subject}-</span>
+                    <span className="body">{email.body}</span>
+                    <span className="sent-at">{email.sentAt}</span>
+                    <button onClick={(ev)=>{ 
+                        ev.stopPropagation();
+                        emailService.toggleIsRead(email.id)}
+                        }>
+                    {email.isRead&& <i class="far fa-envelope"></i>}
+                    {!email.isRead&& <i class="far fa-envelope-open"></i>}
+                    </button>
                 </div>
                 <button hidden={!this.state.isExpanded} >delete</button>
                 <Link hidden={!this.state.isExpanded} to={`/mail/${email.id}`}>full screen </Link>
