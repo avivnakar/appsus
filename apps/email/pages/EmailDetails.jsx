@@ -21,7 +21,7 @@ export default class EmailDetails extends React.Component {
             })
     }
 
-    removeEmail = () => {//todo fix
+    removeEmail = () => {//todo fix doesnt get anythig
         emailService.removeById(this.state.email.id)
             .then(() => {
                 console.log('email was removed');

@@ -19,7 +19,7 @@ export default {
     getById,
     removeById,
     countUnReadEmails,
-    toggleRead
+    toggleIsRead
 }
 
 function _createEmails() {
@@ -40,6 +40,7 @@ function _createEmail(sender, subject, body, isRead) {
 
 function query() {
     var emails = gEmails;
+    //if no emails?todo
     return Promise.resolve(emails);
 }
 
@@ -50,7 +51,7 @@ function getById(emailId){
 }
 
 function getIdxById(id){
-    return gEmails.findIndex(email=>email.id===id)
+    return gEmails.findIndex(email=>email.id===id)//todo retur promise if other cmps use this func
 }
 
 function removeById(emailId){
@@ -71,8 +72,8 @@ function countUnReadEmails(){
     return unreadCount
 }
 
-function toggleRead(id){
-    const idx= getIdxById(emailId)
-    gEmails[idx].isRead=!isRead
+function toggleIsRead(id){
+    const idx= getIdxById(id)
+    gEmails[idx].isRead=!gEmails[idx].isRead
     save()
 }
