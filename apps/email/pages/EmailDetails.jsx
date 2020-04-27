@@ -10,33 +10,23 @@ export default class EmailDetails extends React.Component {
     }
 
     componentDidMount() {
-        console.log('MOUNT');
         this.loadEmail();
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.match.params.theCarId !== this.props.match.params.theCarId) {
-            console.log('Route changed, so we should load the new car');
-            this.loadCar();
-        }
     }
 
     loadEmail() {
         const id = this.props.match.params.theEmailId
         emailService.getById(id)
-            .then(email => {
-                console.log('GOT EMAIL', email);
+        .then(email => {
                 this.setState({ email })
             })
     }
 
-    removeEmail = () => {
-        emailService.remove(this.state.email.id)
+    removeEmail = () => {//todo fix
+        emailService.removeById(this.state.email.id)
             .then(() => {
                 console.log('email was removed');
             })
             .catch(err => {
-                alert('OOPs, try again');
                 console.log('ERR:', err);
             })
     }

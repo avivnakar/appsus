@@ -24,12 +24,12 @@ export class Appsus extends React.Component {
                     <Route component={BookDetails} path="/book/:bookId" />
                     <Switch>
                         <Route component={AboutUs} path="/about" />
-                        <Route component={EmailApp} path="/mail/" />
+                        <Route component={EmailApp} path="/mail" />
                         <Route component={KeepApp} path="/keep" />
                         <Route component={BookApp} path="/book" />
                         <Route component={Home} path="/" />
                     </Switch>
-                    <Route component={EmailDetails} path="/mail/:theEmailId" />
+                    {/* <Route component={EmailDetails} path="/mail/:theEmailId" /> */}
                     {/* <Route component={BooksApp} path="/books" /> */}
                 </main>
                 <hr />
