@@ -42,13 +42,17 @@ export class KeepApp extends React.Component {
         noteService.Note().then(console.log('todo'));
         this.loadNotes();
     }
+    onHandleInput = () => {
+
+    }
     render() {
-        const { onRemoveNote, onTogglePin } = this
+        const{ onRemoveNote, onTogglePin, onHandleInput } = this
+        const noteFuncs= { onRemoveNote, onTogglePin, onHandleInput }
         const { notes } = this.state
-        const noteFuncs = { onRemoveNote, onTogglePin }
+        
         return (
             <React.Fragment>
-                <NoteList notes={notes} onAddNote={this.onAddNote} />
+                <NoteList notes={notes} onAddNote={this.onAddNote} noteFuncs={noteFuncs} />
             </React.Fragment>
         );
     }

@@ -126,6 +126,9 @@ function addContent(id, isTodo = false) {
     _save();
     return Promise.resolve(content.id)
 }
+function updateContent(params) {
+    con
+}
 function removeNote(id) {
     const idx = utilService.getIdxById(id, gNotes);
     gNotes.splice(idx, 1);
@@ -133,6 +136,8 @@ function removeNote(id) {
     return Promise.resolve()
 }
 function removeContent(id) {
+    // getContentIdxById(id)
+    // .then(idx=>)
     return getNoteById(id.slice(0, 4))
         .then(
             note => {
@@ -173,10 +178,11 @@ function _save() {
     stoarageService.store(NOTES_KEY, gNotes);
 
 }
-// function getContentById(id) {
-//     getNoteById(id.slice(0,4))
+// function getContentIdxById(id) {
+//     return getNoteById(id.slice(0,4))
 //     .then(
-//         note=>utilService.getIdxById(id,note.contents)
+//         note=>{const idx=utilService.getIdxById(id,note.contents)
+//        return Promise.resolve(idx,) 
+//         }
 //     )
-//     return Promise.resolve(note)
 // }
