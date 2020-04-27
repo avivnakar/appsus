@@ -24,11 +24,12 @@ import EmailStatus from '../cmps/EmailStatus.jsx'
 export class EmailApp extends React.Component {
     state = {
         emails: null,
-        currCmp: 'emailList'
+        currCmp: 'emailList',
+        readPercent:null
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.currSection);
+        // console.log(this.props.match.params.currSection);
         this.loadEmails()
     }
 
@@ -37,18 +38,25 @@ export class EmailApp extends React.Component {
             .then(emails => {
                 this.setState({ emails })
             })
+            .then (this.percent)
+    }
+
+    percent= ()=>{
+        var read = this.state.emails.length - emailService.countUnReadEmails()
+        var percent =100*read/this.state.emails.length
+        this.setState({ readPercent:percent })
     }
 
     render() {
-        const { emails } = this.state
+        const { emails,readPercent } = this.state
         return ((!emails) ? <p>loading...</p> :
             <section className="email-app">
                 <section className="side-bar">
                     <Link to='/mail/compose'>+ Compose </Link>
                     <EmailNav></EmailNav>
-                    <EmailStatus />
+                    {readPercent&&<EmailStatus percent={readPercent}/>}
                 </section>
-                <DynamicMainCmp currSection={this.props.match.params.currSection} emails={emails}  />
+                {/* <DynamicMainCmp currSection={this.props.match.params.currSection} emails={emails}  /> */}
             </section>
         )
     }
