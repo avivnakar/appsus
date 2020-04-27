@@ -29,18 +29,18 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-.justify-auto {
+/* .justify-auto {
     justify-items: auto;
-}
+} */
 
 .justify-self-auto {
     justify-self: auto;
 }
-
+/* 
 .align-auto {
     -webkit-box-align: auto;
     align-items: auto;
-}
+} */
 
 .align-self-auto {
     align-self: auto;
@@ -55,7 +55,7 @@
 }
 
 .align-normal {
-    -webkit-box-align: normal;
+    /* -webkit-box-align: normal; */
     align-items: normal;
 }
 
@@ -149,7 +149,7 @@
 }
 
 .justify-content-normal {
-    -webkit-box-pack: normal;
+    /* -webkit-box-pack: normal; */
     justify-content: normal;
 }
 
@@ -185,7 +185,7 @@
 }
 
 .justify-content-stretch {
-    -webkit-box-pack: stretch;
+    /* -webkit-box-pack: stretch; */
     justify-content: stretch;
 }
 
@@ -211,7 +211,7 @@
 }
 
 .justify-content-space-evenly {
-    -webkit-box-pack: space-evenly;
+    /* -webkit-box-pack: space-evenly; */
     justify-content: space-evenly;
 }
 
@@ -219,10 +219,10 @@
     align-content: space-evenly;
 }
 
-.justify-content-baseline {
+/* .justify-content-baseline {
     -webkit-box-pack: baseline;
     justify-content: baseline;
-}
+} */
 
 .align-content-baseline {
     align-content: baseline;

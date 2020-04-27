@@ -29,9 +29,9 @@ export class ContentList extends React.Component {
         return (
             <React.Fragment>
 
-            <section className="note-list grid columns-auto-fill">
-                {/* {contents ? contents.map((content) => <DynamicContent key={content.id}  onRemoveContent={this.onTogglePin} content={content} />) : <article>ooof</article>} */}
-            </section>
+            <div className="note-list grid columns-auto-fill">
+                {contents&&contents.length ? contents.map((content) => <DynamicContent key={content.id}  onRemoveContent={this.onTogglePin} content={content} />) : <article>ooof</article>}
+            </div>
             </React.Fragment>
         );
     }

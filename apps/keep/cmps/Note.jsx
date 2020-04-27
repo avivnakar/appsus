@@ -1,7 +1,9 @@
 import { noteService } from '../services/noteService.js'
 import { ContentList } from "./ContentList.jsx";
 export class Note extends React.Component {
-    state = {   note:null    }
+    state = {   note:null,
+        contents:''
+      }
     onAddNote = () => {
         noteService.addNote().then(console.log('todo'));
         this.componentDidMount();
@@ -9,6 +11,10 @@ export class Note extends React.Component {
     onRemoveNote = () => {
         noteService.Note().then(console.log('todo'));
         this.componentDidMount();
+    }
+    onType=({target})=>{
+    console.log('text:',target.value);
+    this.setState({contents:target.value})
     }
     // onAddContent = () => {
     //     noteService.addContent().then(console.log('todo'));
@@ -30,7 +36,8 @@ export class Note extends React.Component {
                 labels:{labels.join()},
                 currIsTodo:{currIsTodo},
                 {/* contents:{contents.join()} */}
-                <ContentList contents={contents} />
+                {/* <ContentList contents={contents} /> */}
+                <input type="text" onChange={this.onType}/>
                 <ul className="btns clean-list  ">
                     <li><button onClick={() => this.props.onTogglePin(id)}>📌</button></li>
                     <li><button onClick={() => this.props.onTogglePin(id)}>remove</button></li>

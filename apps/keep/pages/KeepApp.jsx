@@ -12,19 +12,43 @@
 // import {NoteVideo} from '../cmps/NoteVideo.jsx'
 // import {NoteAudio} from '../cmps/NoteAudio.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
+import { noteService } from '../services/noteService.js'
 
 export class KeepApp extends React.Component {
     state = {
-
+        notes: null,
+        filterBy: null
     }
-    // constructor(props) {
-    //     super(props);
-    // }
-
+    componentDidMount() {
+        this.loadNotes();
+    }
+    loadNotes = () => {
+        noteService.query()
+            .then(notes => {
+                this.setState({ notes })
+                console.log(notes)
+            })
+    }
+    onTogglePin = (id) => {
+        console.log(`${id} toggled`);
+        noteService.togglePin(id);
+        this.loadNotes();
+    }
+    onAddNote = () => {
+        noteService.addNote().then(console.log('todo'));
+        this.loadNotes();
+    }
+    onRemoveNote = () => {
+        noteService.Note().then(console.log('todo'));
+        this.loadNotes();
+    }
     render() {
+        const { onRemoveNote, onTogglePin } = this
+        const { notes } = this.state
+        const noteFuncs = { onRemoveNote, onTogglePin }
         return (
             <React.Fragment>
-                <NoteList />
+                <NoteList notes={notes} onAddNote={this.onAddNote} />
             </React.Fragment>
         );
     }
