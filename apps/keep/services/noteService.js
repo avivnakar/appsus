@@ -140,10 +140,17 @@ function _updateNote(id, attr, value) {
     gNotes[idx][attr] = value;
     _save();
 }
-
+/**
+ * 
+ * @param {string} id 
+ * @param {boolean} isTodo 
+ */
 function addContent(id, isTodo = false) {
-    const content = _createContent(id, isTodo);
-    gNotes.push(note)
+    console.log('id:',id);
+    const noteId=id.slice(0,4)
+    const content = _createContent(noteId, isTodo);
+    const noteIdx=utilService.getIdxById(noteId,gNotes)
+    gNotes[noteIdx].contents.push(content);
     _save();
     return Promise.resolve(content.id)
 }
@@ -168,13 +175,23 @@ function removeNote(id) {
 function removeContent(id) {
     // getContentIdxById(id)
     // .then(idx=>)
+        console.log('%c id:','color:yellow;',id)
     return getNoteById(id.slice(0, 4))
         .then(
             note => {
+                console.log('%c note:','color:yellow;',note)
                 const idx = utilService.getIdxById(id, note.contents);
+                console.log('%c note idx:','color:yellow;',idx)
                 note.contents.splice(idx, 1);
                 _save();
             })
+    // return getNoteById(id.slice(0, 4))
+    //     .then(
+    //         note => {
+    //             const idx = utilService.getIdxById(id, note.contents);
+    //             note.contents.splice(idx, 1);
+    //             _save();
+    //         })
 }
 
 function query(filterBy) {
@@ -189,7 +206,8 @@ function query(filterBy) {
     //         (!isPinned) && lowered === 'unpinned' ||
     //         mediaType.toLowerCase().includes(lowered)
     // })
-    return Promise.resolve(gNotes);
+
+    return Promise.resolve(gNotes.sort((a, b) => { return a.isPinned===b.isPinned?0:a.isPinned?-1:1}));
 }
 function _getNoteById(id) {
     return gNotes.find(note => note.id === id);
@@ -232,12 +250,18 @@ function checkTodoAt(id, timestamp) {
     _updateContent(id, 'doneAt', timestamp);
     return Promise.resolve();
 }
+
+/**
+ * 
+ * @param {string} id
+ * @returns {Promise} 
+ */
 function unCheckTodo(id) {
     _updateContent(id, 'doneAt', null);
     return Promise.resolve();
 }
-function setContentTxt(id,txt){
-    _updateContent(id,'txt',txt);
+function setContentTxt(id, txt) {
+    _updateContent(id, 'txt', txt);
 }
 // {
 //     id: utilService.makeId(4),

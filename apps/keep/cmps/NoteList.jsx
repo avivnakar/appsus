@@ -23,7 +23,7 @@ export class NoteList extends React.Component {
         const { notes,onAddNote,noteFuncs } = this.props;
         return (
             <React.Fragment>
-            <button onClick={this.props.onAddNote}></button>
+            <button onClick={onAddNote}>+</button>
             <section className="note-list grid columns-auto-fill">
                 {notes ? notes.map((note) => <Note key={note.id} {...noteFuncs} note={note} />) : <article>ooof</article>}
             </section>
