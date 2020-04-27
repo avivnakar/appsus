@@ -71,8 +71,8 @@ header {
 
 .nav-bar .toggler:checked ~.nav-menu{
     border:2px solid red;
-    position: absolute;
-    flex-direction: column;
+    /* position: absolute;
+    flex-direction: column; */
     /* visibility: hidden;
     display: none;
     color: slateblue;

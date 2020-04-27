@@ -4,7 +4,7 @@ export class NavBar extends React.Component {
     render() {
         return (
             <nav className="nav-bar flex">
-                <input type="checkbox" className="toggler" />
+                <input type="checkbox" className="toggler" id="toggle-menu" />
                 <BurgerX />
                 <ul className="nav-menu clean-list flex">
                     <li className="flex justify-center align-center"><NavLink exact to="/">Home</NavLink></li>
@@ -21,11 +21,11 @@ export class NavBar extends React.Component {
 }
 function BurgerX(props) {
     return (
-        <div className={`burger-container`}>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+            <label htmlFor="toggle-menu" className="burger-container">
+                <div></div>
+                <div></div>
+                <div></div>
+            </label>
     )
 
 }
