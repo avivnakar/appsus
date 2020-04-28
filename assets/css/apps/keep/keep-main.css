@@ -7,12 +7,23 @@
 
 /* LAYOUT */
 .note-list{
-    /* grid-template-columns: repeat(5,1fr); */
+/* display: flex; */
+vertical-align: baseline;
+clear: both;
+height: min-content;
 }
 /* COMPONENTS */
-
+.add-note{
+    background-color: unset;
+    border-radius: 50%;
+    color: inherit;
+    border: none;
+}
 /* Main content */
 
 /* HELPERS */
+.relative{
+    position: relative;
+}
 
 /* flex-helpers */

@@ -1,5 +1,92 @@
-.note{
-    background-color: lightslategray ;
-    min-height: 250px;
+.note {
+    margin: 5px;
+    border: 1px solid #5f6368;
+    border-radius: 7px;
+    background-color: #202124;
+    min-height: 150px;
+    width: 250px;
     grid-column: span 1;
+    justify-self: center;
+    align-self: baseline;
+    
+}
+.note *{color: white;}
+.note input[type="text"] {
+    /* border-radius: 1s3px; */
+    border: none;
+    outline: none;
+    background-color: unset;
+    color: inherit;
+}
+
+.note button {
+    border: none;
+    background: none;
+}
+
+.note .link::after {
+    /* content: url('../../../../../../../resources/graphics/fa-svg/link.svg'); */
+    content: \f0c1;
+    color: purple;
+}
+
+.note .btns {
+    display: flex;
+}
+
+.note .btns * {
+    background: none;
+    border: none;
+    border-radius: 50%;
+    /* border: 1px solid springgreen; */
+}
+
+.note input::placeholder {
+    color: #f2f2f2;
+}
+
+.note input:checked~.link {
+    color: red;
+}
+
+.note input:checked~label .text {
+    text-decoration: line-through;
+}
+
+/* /* .note .content-list {
+    display: flex;
+    flex-flow: column nowrap;
+} */
+.note .content-list li label{
+    max-width: 100%;
+    display: flex;
+    /* background: #000; */
+} 
+.note input[type="text"]{
+    /* border:1px solid springgreen; */
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    flex: 0 1 800%;
+}
+.note .pin{
+    /* background-color: #fff; */
+    border-radius: 50%;
+    opacity: 0;
+}
+.note:hover .pin{
+    opacity: 0.5;
+}
+.note .pin.pinned{
+    opacity: 1;
+}
+.add-link{
+  display: none;  
+}
+.add-link *{
+    color: unset;
+}
+input:checked+.add-link{
+    display: block;
+    position: absolute;
+    top: -20px;
 }

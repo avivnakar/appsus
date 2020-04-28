@@ -50,6 +50,9 @@ export class KeepApp extends React.Component {
         noteService.addTitle()
             .then(this.loadNotes);
     }
+    onAddURL = () => {
+        noteService.addURL(id, url, type)
+    }
     onAddContent = (id) => {
         noteService.addContent(id, this.state.currIsTodo)
             .then(this.loadNotes);
@@ -64,17 +67,17 @@ export class KeepApp extends React.Component {
     }
     onCheck = (id) => {
         noteService.checkTodoAt(id)
-        .then(this.loadNotes);
-        
+            .then(this.loadNotes);
+
     }
     onUnCheck = (id) => {
         noteService.unCheckTodo(id)
-        .then(this.loadNotes);
+            .then(this.loadNotes);
     }
     onFillNote = () => { }
     onUpdateNoteTxt = (id, { target }) => {
-        noteService.setContentTxt(id, target.value);
-        this.loadNotes();
+        noteService.setContentTxt(id, target.value)
+            .then(this.loadNotes);
     }
     //  }
     // x = {
@@ -83,18 +86,25 @@ export class KeepApp extends React.Component {
     //     setMediaType,
     //     setURL,
     // }
+    onSubmitMedia = (id, url, mediaType) => {
+        const willBeOk = [noteService.setURL(id, url),
+        noteService.setMediaType(id, mediaType)]
+        Promise.all(willBeOk)
+            .then()
+    }
     render() {
         const { onRemoveNote, onTogglePin, onHandleInput, onAddTitle,
             onAddContent, onAddNote, onRemoveContent, onToggleTodoMode, onCheck,
-             onUpdateNoteTxt,onUnCheck } = this
-        const contentFuncs = { onCheck, onRemoveContent, onUpdateNoteTxt, onAddContent, onToggleTodoMode,onUnCheck }
+            onUpdateNoteTxt, onUnCheck } = this
+        const contentFuncs = { onCheck, onRemoveContent, onUpdateNoteTxt, onAddContent, onToggleTodoMode, onUnCheck }
         const noteFuncs = { onRemoveNote, onTogglePin, onHandleInput, onAddContent, onAddTitle, contentFuncs }
         const { notes } = this.state
 
         return (
-            <React.Fragment>
+            <section className="keep">
+                <button className="add-note" onClick={onAddNote}>+</button>
                 <NoteList notes={notes} onAddNote={onAddNote} noteFuncs={noteFuncs} />
-            </React.Fragment>
+            </section>
         );
     }
 }

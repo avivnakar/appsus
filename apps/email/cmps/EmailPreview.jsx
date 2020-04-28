@@ -33,8 +33,9 @@ export default class EmailPreview extends React.Component {
                         ev.stopPropagation();
                         emailService.toggleIsRead(email.id)}
                         }>
-                    {email.isRead&& <i class="far fa-envelope"></i>}
-                    {!email.isRead&& <i class="far fa-envelope-open"></i>}
+                    {email.isRead&& <i className="far fa-envelope"></i>}
+                    {/*use className insted of class in React.js */}
+                    {!email.isRead&& <i className="far fa-envelope-open"></i>}
                     </button>
                 </div>
                 <button hidden={!this.state.isExpanded} >delete</button>
