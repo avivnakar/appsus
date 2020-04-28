@@ -17,29 +17,42 @@ export default class EmailPreview extends React.Component {
 
     render() {
         const { email } = this.props
-        var readClass=(email.isRead)? null:'not-read'
-        
+        var readClass = (email.isRead) ? null : 'not-read'
+
         return (
             <article className="email-preview">
-                <div className={readClass} onClick={()=>{
-                    if(!email.isRead) emailService.toggleIsRead(email.id)
+                <div className={readClass} onClick={() => {
+                    if (!email.isRead) emailService.toggleIsRead(email.id)
                     this.setState({ isExpanded: !this.state.isExpanded })
                 }}>
                     <span className="sender">{email.sender}</span>
                     <span className="subject">{email.subject}-</span>
-                    <span className="body">{email.body}</span>
+                    <span className="email-body">{email.body}</span>
                     <span className="sent-at">{email.sentAt}</span>
-                    <button onClick={(ev)=>{ 
+                    <button onClick={(ev) => {
                         ev.stopPropagation();
+<<<<<<< HEAD
                         emailService.toggleIsRead(email.id)}
                         }>
                     {email.isRead&& <i className="far fa-envelope"></i>}
                     {/*use className insted of class in React.js */}
                     {!email.isRead&& <i className="far fa-envelope-open"></i>}
+=======
+                        emailService.toggleIsRead(email.id)
+                    }
+                    }>
+                        {email.isRead && <i class="far fa-envelope"></i>}
+                        {!email.isRead && <i class="far fa-envelope-open"></i>}
+>>>>>>> b7d8465547eab1c866483eebb9574308c1310e0b
                     </button>
                 </div>
+                <div>
                 <button hidden={!this.state.isExpanded} >delete</button>
-                <Link hidden={!this.state.isExpanded} to={`/mail/${email.id}`}>full screen </Link>
+                <Link hidden={!this.state.isExpanded} to={`/mail/${email.id}`}>full screen</Link>
+                <span className="sender">{email.sender}</span>
+                <span className="subject">{email.subject}</span>
+                <p>{email.body}</p>
+                </div>
             </article>
         )
     }

@@ -1,0 +1,24 @@
+.email-preview{
+    height: 1.6rem;
+}
+
+.email-preview .sender{
+    width:150px;
+}
+
+.email-preview div{
+    display:flex;
+}
+
+.email-preview .email-body{
+    color:lightgrey;
+    overflow: hidden;
+}
+
+.email-preview .sent-at{
+    width:50px;
+}
+
+.email-preview .not-read{
+    font-weight: bold;
+}

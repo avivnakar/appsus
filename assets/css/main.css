@@ -11,4 +11,5 @@
 @import url('./pages/home-page.css');
 @import url('./apps/keep/keep-main.css');
 @import url('./apps/email/email-main.css');
+@import url('./apps/email/email-preview.css');
 @import url('./apps/books/books-main.css');
