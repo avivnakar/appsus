@@ -36,11 +36,7 @@ export default class EmailPreview extends React.Component {
                         emailService.toggleIsRead(email.id)}
                         }>
                     {email.isRead&& <i className="far fa-envelope"></i>}
-                    {/*use className insted of class in React.js */}
                     {!email.isRead&& <i className="far fa-envelope-open"></i>}
-                    
-                        {email.isRead && <i class="far fa-envelope"></i>}
-                        {!email.isRead && <i class="far fa-envelope-open"></i>}
                     </button>
                 </section>
 
@@ -60,42 +56,3 @@ export default class EmailPreview extends React.Component {
 }
 
 //changing the service doesnt creat new props ? witch shoud cause re rendering
-
-
-// render() {
-//     const { email } = this.props
-//     var readClass = (email.isRead) ? null : 'not-read'
-
-//     return (
-//         <article className="email-preview">
-//             <section className={readClass} onClick={() => {
-//                 if (!email.isRead) emailService.toggleIsRead(email.id)
-//                 this.setState(({ isExpanded }) => ({ isExpanded: !isExpanded }))
-//             }}>
-//                 <span className="sender">{email.sender}</span>
-//                 <span className="subject">{email.subject}-</span>
-//                 <span className="email-body">{email.body}</span>
-//                 <span className="sent-at">{email.sentAt}</span>
-//                 <button onClick={(ev) => {
-//                     ev.stopPropagation();
-//                     emailService.toggleIsRead(email.id)
-//                 }
-//                 }>
-//                     {email.isRead && <i class="far fa-envelope"></i>}
-//                     {!email.isRead && <i class="far fa-envelope-open"></i>}
-//                 </button>
-//             </section>
-
-//             <section hidden={!this.state.isExpanded}>
-//             <span className="sender">{email.sender}</span>
-//             <span className="subject">{email.subject}</span>
-//             <button onClick={()=>{ this.props.removeEmail(email.id)}}>Delete</button>
-//             <Link  to={`/mail/${email.id}`}>full screen</Link>
-//             </section>
-
-//             <p  hidden={!this.state.isExpanded}>{email.body}</p>
-            
-            
-//         </article>
-//     )
-// }
