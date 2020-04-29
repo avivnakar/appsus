@@ -6,7 +6,6 @@ const { Link } = ReactRouterDOM
 export default class EmailPreview extends React.Component {
     state = {
         isExpanded: false,
-        // isRead: null
     }
 
     // emailClickedHandeler = (email) => {//make read class true , is expanded toggle
@@ -14,68 +13,84 @@ export default class EmailPreview extends React.Component {
     // }
 
     // toggleIsRead
+    
 
     render() {
-        const { email } = this.props
+        const { email,toggleEmailRead } = this.props
         var readClass = (email.isRead) ? null : 'not-read'
 
         return (
             <article className="email-preview">
-                <div className={readClass} onClick={() => {
-                    if (!email.isRead) emailService.toggleIsRead(email.id)
-                    this.setState({ isExpanded: !this.state.isExpanded })
+                <section className={readClass} onClick={() => {
+                    if (!email.isRead) toggleEmailRead(email.id)
+                    this.setState(({ isExpanded }) => ({ isExpanded: !isExpanded }))
                 }}>
                     <span className="sender">{email.sender}</span>
                     <span className="subject">{email.subject}-</span>
                     <span className="email-body">{email.body}</span>
                     <span className="sent-at">{email.sentAt}</span>
                     <button onClick={(ev) => {
-                        ev.stopPropagation();
-                        emailService.toggleIsRead(email.id)
+                        ev.stopPropagation()
+                        toggleEmailRead(email.id)
                     }
                     }>
                         {email.isRead && <i class="far fa-envelope"></i>}
                         {!email.isRead && <i class="far fa-envelope-open"></i>}
                     </button>
-                </div>
-                <div>
-                <button hidden={!this.state.isExpanded} >delete</button>
-                <Link hidden={!this.state.isExpanded} to={`/mail/${email.id}`}>full screen</Link>
+                </section>
+
+                <section hidden={!this.state.isExpanded}>
                 <span className="sender">{email.sender}</span>
                 <span className="subject">{email.subject}</span>
-                <p>{email.body}</p>
-                </div>
+                <button onClick={()=>{ this.props.removeEmail(email.id)}}>Delete</button>
+                <Link  to={`/mail/${email.id}`}>full screen</Link>
+                </section>
+
+                <p  hidden={!this.state.isExpanded}>{email.body}</p>
+                
+                
             </article>
         )
     }
-
-
-
-
-
 }
 
+//changing the service doesnt creat new props ? witch shoud cause re rendering
 
 
 // render() {
-//     //todo: with css limit the size of txt and use over flow hidden
-//     //details, full screen
 //     const { email } = this.props
+//     var readClass = (email.isRead) ? null : 'not-read'
+
 //     return (
 //         <article className="email-preview">
-//             <div onClick={() => {
+//             <section className={readClass} onClick={() => {
+//                 if (!email.isRead) emailService.toggleIsRead(email.id)
 //                 this.setState(({ isExpanded }) => ({ isExpanded: !isExpanded }))
 //             }}>
-//                <span className="email-sender">{email.sender}</span> 
-//                <span className="email-subject">{email.subject}-</span>
-//                <span className="email-body">{email.body}</span>
-//                <span className="email-sent-at">{email.sentAt}</span>
+//                 <span className="sender">{email.sender}</span>
+//                 <span className="subject">{email.subject}-</span>
+//                 <span className="email-body">{email.body}</span>
+//                 <span className="sent-at">{email.sentAt}</span>
+//                 <button onClick={(ev) => {
+//                     ev.stopPropagation();
+//                     emailService.toggleIsRead(email.id)
+//                 }
+//                 }>
+//                     {email.isRead && <i class="far fa-envelope"></i>}
+//                     {!email.isRead && <i class="far fa-envelope-open"></i>}
+//                 </button>
+//             </section>
 
-//             </div>
-//             <button hidden={!this.state.isExpanded} >delete</button>
-//             <Link  hidden={!this.state.isExpanded} to={`/mail/${email.id}`}>full screen </Link>
+//             <section hidden={!this.state.isExpanded}>
+//             <span className="sender">{email.sender}</span>
+//             <span className="subject">{email.subject}</span>
+//             <button onClick={()=>{ this.props.removeEmail(email.id)}}>Delete</button>
+//             <Link  to={`/mail/${email.id}`}>full screen</Link>
+//             </section>
+
+//             <p  hidden={!this.state.isExpanded}>{email.body}</p>
+            
+            
 //         </article>
 //     )
 // }
-// }
-

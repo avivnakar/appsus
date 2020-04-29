@@ -21,15 +21,11 @@ export default class EmailDetails extends React.Component {
             })
     }
 
-    removeEmail = () => {//todo fix doesnt get anythig
+    removeEmail = () => {
         emailService.removeById(this.state.email.id)
-            .then(() => {
-                console.log('email was removed');
-            })
-            .catch(err => {
-                console.log('ERR:', err);
-            })
+        this.props.history.push('/mail/inbox')
     }
+
 
     render() {
         const { email } = this.state

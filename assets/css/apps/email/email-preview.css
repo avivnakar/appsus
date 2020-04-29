@@ -1,4 +1,4 @@
-.email-preview{
+.email-preview section{
     height: 1.6rem;
 }
 
@@ -10,9 +10,9 @@
     display:flex;
 }
 
-.email-preview .email-body{
+.email-preview .body{
     color:lightgrey;
-    overflow: hidden;
+    flex-grow: 1;
 }
 
 .email-preview .sent-at{

@@ -61,6 +61,7 @@ function removeById(emailId){
     const idx= getIdxById(emailId)
     gEmails.splice(idx,1)
     save()
+    return Promise.resolve('remove worked')
 }
 
 function save(){
@@ -79,4 +80,5 @@ function toggleIsRead(id){
     const idx= getIdxById(id)
     gEmails[idx].isRead=!gEmails[idx].isRead
     save()
+    return Promise.resolve(' toggle worked')
 }
