@@ -14,18 +14,19 @@ export class NavBar extends React.Component {
                     <li className="flex justify-center align-center"><NavLink exact to="/keep">Keep</NavLink></li>
                     {/* Mabye TODO notification component */}
                 </ul>
-                <hr />
             </nav>
         );
     }
 }
 function BurgerX(props) {
     return (
+        <div className="burger-package">
             <label htmlFor="toggle-menu" className="burger-container">
                 <div></div>
                 <div></div>
                 <div></div>
             </label>
+        </div>
     )
 
 }

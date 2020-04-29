@@ -1,3 +1,12 @@
+.burger-package{
+    width: min-content;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1 0 auto;
+}
 .nav-bar .toggler {
     position: absolute;
     height: 50px;
@@ -47,21 +56,21 @@
     top: 14px;
 }
 
-.toggler:checked+.burger-container div {
+.toggler:checked+.burger-package .burger-container div {
     background-color: #2f86ff;
 }
 
-.toggler:checked+.burger-container div:nth-child(1) {
+.toggler:checked+.burger-package .burger-container div:nth-child(1) {
     left: 4px;
     transform: rotate(45deg);
 }
 
-.toggler:checked+.burger-container div:nth-child(2) {
+.toggler:checked+.burger-package .burger-container div:nth-child(2) {
     width: 0;
     opacity: 0;
 }
 
-.toggler:checked+.burger-container div:nth-child(3) {
+.toggler:checked+.burger-package .burger-container div:nth-child(3) {
     transform: rotate(-45deg);
     left: 4px;
     top: 100%;

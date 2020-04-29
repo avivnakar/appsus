@@ -1,0 +1,67 @@
+/* BASICS */
+
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+a, a *, button {
+    cursor: pointer;
+    color: inherit;
+}
+
+a, a:active {
+    text-decoration: none;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #18191a;
+    color: white;
+}
+
+footer{
+    text-align: center;
+}
+
+/* COMPONENTS */
+
+/* LAYOUT */
+
+/* Main content */
+.logo {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+/* flex-helpers */
+
+/* @media (min-width:768px) {
+    .burger-container {
+        height: 18px;
+        width: 27px;
+    }
+    .burger-container div:nth-child(1) {
+        top: 0;
+    }
+    .burger-container div:nth-child(2) {
+        top: 8px;
+    }
+    .burger-container div:nth-child(3) {
+        top: 16px;
+    }
+}
+@media (min-width:1024px){
+    .burger-container{
+        display: none;
+    }
+} */

@@ -44,7 +44,7 @@ const gDefaultNotes = [
             backgroundColor: 'inherit',
         },
         url: 'https://youtu.be/dQw4w9WgXcQ',
-        mediaType: 'vid',
+        mediaType: 'video',
         labels: [],
         currIsTodo: false,
         contents: [
@@ -262,6 +262,7 @@ function unCheckTodo(id) {
 }
 function setContentTxt(id, txt) {
     _updateContent(id, 'txt', txt);
+    return Promise.resolve();
 }
 // {
 //     id: utilService.makeId(4),

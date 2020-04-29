@@ -30,12 +30,25 @@ export default class EmailPreview extends React.Component {
                     <span className="email-body">{email.body}</span>
                     <span className="sent-at">{email.sentAt}</span>
                     <button onClick={(ev) => {
+<<<<<<< HEAD
                         ev.stopPropagation()
                         toggleEmailRead(email.id)
+=======
+                        ev.stopPropagation();
+<<<<<<< HEAD
+                        emailService.toggleIsRead(email.id)}
+                        }>
+                    {email.isRead&& <i className="far fa-envelope"></i>}
+                    {/*use className insted of class in React.js */}
+                    {!email.isRead&& <i className="far fa-envelope-open"></i>}
+=======
+                        emailService.toggleIsRead(email.id)
+>>>>>>> cae5d720cf28a3ad0196816ff72e4878a2130e92
                     }
                     }>
                         {email.isRead && <i class="far fa-envelope"></i>}
                         {!email.isRead && <i class="far fa-envelope-open"></i>}
+>>>>>>> b7d8465547eab1c866483eebb9574308c1310e0b
                     </button>
                 </section>
 
