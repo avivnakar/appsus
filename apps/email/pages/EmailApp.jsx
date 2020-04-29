@@ -1,6 +1,5 @@
-const { Link } = ReactRouterDOM
 const Router = ReactRouterDOM.HashRouter
-const { Route, Switch } = ReactRouterDOM
+const { Route, Switch ,Link} = ReactRouterDOM
 const history = History.createBrowserHistory()
 
 import emailService from '../services/emailService.js'
@@ -17,6 +16,8 @@ export class EmailApp extends React.Component {
 
     componentDidMount() {
         this.loadEmails()
+        if (window.location.href.split('#')[1] === '/mail' || window.location.href.split('#')[1] === '/mail/')
+            window.location.href = '#/mail/inbox'
     }
 
     loadEmails() {
@@ -28,28 +29,28 @@ export class EmailApp extends React.Component {
 
     removeEmail = (id) => {
         emailService.removeById(id)
-        .then (this.loadEmails())
+            .then(this.loadEmails())
     }
 
-    toggleEmailRead=(id) => {
+    toggleEmailRead = (id) => {
         emailService.toggleIsRead(id)
-        .then (this.loadEmails())
+            .then(this.loadEmails())
     }
 
     render() {
         const { emails } = this.state
-        var unReadCount=emailService.countUnReadEmails()
+        var unReadCount = emailService.countUnReadEmails()
         return ((!emails) ? <p>loading...</p> :
             <Router>
                 <section className="email-app">
                     <section className="side-bar">
                         <Link to='/mail/compose'>+ Compose </Link>
                         <EmailNav></EmailNav>
-                        <EmailStatus unRead={unReadCount} total={emails.length}/>
+                        <EmailStatus unRead={unReadCount} total={emails.length} />
                     </section>
                     <Switch>
-                        <Route path='/mail/inbox' component={()=> 
-                        <EmailList emails={emails} toggleEmailRead={this.toggleEmailRead} removeEmail={this.removeEmail} unReadCount={unReadCount}/>}/>
+                        <Route path='/mail/inbox' component={() =>
+                            <EmailList emails={emails} toggleEmailRead={this.toggleEmailRead} removeEmail={this.removeEmail} unReadCount={unReadCount} />} />
                         <Route component={EmailCompose} exact path="/mail/compose" />
                         <Route component={EmailDetails} path="/mail/:theEmailId" />
                     </Switch>

@@ -8,7 +8,7 @@ export function ContentList (props) {
             <ul className="content-list clean-list">
                 {contents && contents.length ?
                  contents.map((content) =>
-                  <PlainText key={content.id}  {...contentFuncs} content={content} />) : <article>ooof</article>}
+                  <PlainText key={content.id}  {...contentFuncs} content={content} />) :' '}
             </ul>
         );
 

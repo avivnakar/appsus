@@ -1,3 +1,8 @@
+@font-face {
+    font-family: eurofurence;
+    src: url('../fonts/eurofurence/eurof35.ttf');
+}
+
 /* BASICS */
 
 * {
@@ -28,24 +33,35 @@ body {
     color: white;
 }
 
-footer{
+footer {
     text-align: center;
 }
 
+
+
 /* COMPONENTS */
 
-/* LAYOUT */
-
 /* Main content */
+
 .logo {
     margin: 0;
     padding: 0;
-    display: inline;
+    color: lightskyblue;
+    font-family: eurofurence;
+    /* display: inline; */
 }
 
-/* flex-helpers */
+header .logo {
+    margin-left: 0.5em;
+}
 
-/* @media (min-width:768px) {
+footer h1.logo {
+    width: 100vw;
+    margin-bottom: 5px;
+}
+    /* LAYOUT */
+    /* flex-helpers */
+    /* @media (min-width:768px) {
     .burger-container {
         height: 18px;
         width: 27px;

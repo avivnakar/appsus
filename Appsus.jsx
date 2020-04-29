@@ -2,13 +2,13 @@ import Home from './pages/Home.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { EmailApp } from './apps/email/pages/EmailApp.jsx'
 import EmailDetails from './apps/email/pages/EmailDetails.jsx'
-import {BookApp} from './apps/bookypooky/pages/BookApp.jsx'
-import {BookDetails} from './apps/bookypooky/pages/BookDetails.jsx'
+import { BookApp } from './apps/bookypooky/pages/BookApp.jsx'
+import { BookDetails } from './apps/bookypooky/pages/BookDetails.jsx'
 // import BooksApp from '.apps/books/pages/BookApp.jsx'
 import { KeepApp } from './apps/keep/pages/KeepApp.jsx'
 import { NavBar } from './cmps/NavBar.jsx';
 const Router = ReactRouterDOM.HashRouter
-const { Route, Switch } = ReactRouterDOM
+const { Route, Switch, Link } = ReactRouterDOM
 
 export class Appsus extends React.Component {
 
@@ -16,7 +16,7 @@ export class Appsus extends React.Component {
         return (
             <Router>
                 <header className="flex space-between align-center">
-                    <h1 className="logo">Appsus</h1>
+                    <Link exact to='/'><h1 className="logo">Appsus</h1></Link>
                     <NavBar />
                 </header>
                 <main>
