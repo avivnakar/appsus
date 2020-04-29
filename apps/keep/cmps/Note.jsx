@@ -17,6 +17,7 @@ export function Note(props) {
                 </pre> */}
             {/* <input type="text" onChange={this.onType} /> */}
             {/* <input type="url" onChange={onUrl}/> */}
+            {url&&mediaType==='video'&&<iframe width="320" height="240" src="https://www.youtube.com/embed/oHg5SJYRHA0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>}
             <ul className="btns clean-list ">
                 <li><input onClick={() => onTogglePin(id)} type="button" id={`pin-note ${id}`} value="📌" /></li>
                 <li><input onClick={() => onRemoveNote(id)} type="button" id={`remove-note ${id}`} value="⨯" /></li>
@@ -27,7 +28,6 @@ export function Note(props) {
                 <label className="link fas fa-link" htmlFor={`toggleAddUrl ${id}`} >
                 </label></li>
             </ul>
-            {url&&mediaType==='video'&&<iframe width="320" height="240" src="https://www.youtube.com/embed/oHg5SJYRHA0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>}
             <ContentList contents={contents} contentFuncs={contentFuncs} />
         </article>
     );

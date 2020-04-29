@@ -90,3 +90,7 @@ input:checked+.add-link{
     position: absolute;
     top: -20px;
 }
+
+.note.video{
+    width: 320px;
+}
