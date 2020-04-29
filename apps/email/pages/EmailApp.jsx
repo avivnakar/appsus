@@ -24,16 +24,20 @@ export class EmailApp extends React.Component {
             .then(emails => {
                 this.setState({ emails })
             })
-            .then(this.percent)
     }
 
     removeEmail = (id) => {
-        emailService.remove(id)
-        this.loadEmails()
+        emailService.removeById(id)
+        .then (this.loadEmails())
+    }
+
+    toggleEmailRead=(id) => {
+        emailService.toggleIsRead(id)
+        .then (this.loadEmails())
     }
 
     render() {
-        const { emails, readPercent } = this.state
+        const { emails } = this.state
         var unReadCount=emailService.countUnReadEmails()
         return ((!emails) ? <p>loading...</p> :
             <Router>
@@ -41,10 +45,11 @@ export class EmailApp extends React.Component {
                     <section className="side-bar">
                         <Link to='/mail/compose'>+ Compose </Link>
                         <EmailNav></EmailNav>
-                        {readPercent && <EmailStatus unRead={unReadCount} total={emails.length}/>}
+                        <EmailStatus unRead={unReadCount} total={emails.length}/>
                     </section>
                     <Switch>
-                        <Route path='/mail/inbox' component={()=> <EmailList emails={emails} unReadCount={unReadCount}/>}/>
+                        <Route path='/mail/inbox' component={()=> 
+                        <EmailList emails={emails} toggleEmailRead={this.toggleEmailRead} removeEmail={this.removeEmail} unReadCount={unReadCount}/>}/>
                         <Route component={EmailCompose} exact path="/mail/compose" />
                         <Route component={EmailDetails} path="/mail/:theEmailId" />
                     </Switch>

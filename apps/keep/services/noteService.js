@@ -29,7 +29,7 @@ const gDefaultNotes = [
         style: {
             backgroundColor: 'inherit',
         },
-        url: 'http://some-img/me',
+        url: 'https://i.picsum.photos/id/295/200/200.jpg',
         mediaType: 'image',
         labels: [],
         currIsTodo: false,
@@ -58,7 +58,7 @@ const gDefaultNotes = [
             backgroundColor: 'inherit',
         },
         url: null,
-        mediaType: 'vid',
+        mediaType: null,
         labels: [],
         currIsTodo: false,
         contents: [
@@ -146,10 +146,9 @@ function _updateNote(id, attr, value) {
  * @param {boolean} isTodo 
  */
 function addContent(id, isTodo = false) {
-    console.log('id:',id);
-    const noteId=id.slice(0,4)
+    const noteId = id.slice(0, 4)
     const content = _createContent(noteId, isTodo);
-    const noteIdx=utilService.getIdxById(noteId,gNotes)
+    const noteIdx = utilService.getIdxById(noteId, gNotes)
     gNotes[noteIdx].contents.push(content);
     _save();
     return Promise.resolve(content.id)
@@ -175,13 +174,10 @@ function removeNote(id) {
 function removeContent(id) {
     // getContentIdxById(id)
     // .then(idx=>)
-        console.log('%c id:','color:yellow;',id)
     return getNoteById(id.slice(0, 4))
         .then(
             note => {
-                console.log('%c note:','color:yellow;',note)
                 const idx = utilService.getIdxById(id, note.contents);
-                console.log('%c note idx:','color:yellow;',idx)
                 note.contents.splice(idx, 1);
                 _save();
             })
@@ -207,7 +203,7 @@ function query(filterBy) {
     //         mediaType.toLowerCase().includes(lowered)
     // })
 
-    return Promise.resolve(gNotes.sort((a, b) => { return a.isPinned===b.isPinned?0:a.isPinned?-1:1}));
+    return Promise.resolve(gNotes.sort((a, b) => { return a.isPinned === b.isPinned ? 0 : a.isPinned ? -1 : 1 }));
 }
 function _getNoteById(id) {
     return gNotes.find(note => note.id === id);
@@ -218,7 +214,6 @@ function getNoteById(id) {
 function togglePin(id) {
     return getNoteById(id)
         .then(note => {
-            console.log(note);
             note.isPinned = !note.isPinned
             _save();
         })

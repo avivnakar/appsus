@@ -10,6 +10,9 @@
     align-self: baseline;
     
 }
+.note label{
+    cursor: pointer;
+}
 .note *{color: white;}
 .note input[type="text"] {
     /* border-radius: 1s3px; */
@@ -34,7 +37,7 @@
     display: flex;
 }
 
-.note .btns * {
+.note .btns li {
     background: none;
     border: none;
     border-radius: 50%;
@@ -68,10 +71,13 @@
     white-space: pre-wrap;
     flex: 0 1 800%;
 }
-.note .pin{
+.note .pin, .note .add-title{
     /* background-color: #fff; */
     border-radius: 50%;
     opacity: 0;
+}
+.note:hover .add-title{
+    opacity: 1;
 }
 .note:hover .pin{
     opacity: 0.5;
@@ -79,18 +85,39 @@
 .note .pin.pinned{
     opacity: 1;
 }
+.note .remove-note{
+    float: right;
+    border-radius: 50%;
+}
 .add-link{
   display: none;  
+  border-radius: 2em;
+  padding: 3px;
 }
 .add-link *{
     color: unset;
+    background: inherit;
 }
-input:checked+.add-link{
+input:checked~.add-link{
     display: block;
     position: absolute;
     top: -20px;
+    background-color: yellowgreen;
 }
 
 .note.video{
     width: 320px;
+}
+.note.image img{
+    object-fit:fill;
+    width: 100%;
+    
+}
+main .keep .note-list.flex.wrap  *:focus{
+    outline: red solid 4px;
+    outline-style: solid;
+    outline-width: 4px;
+    /* border: 3px solid yellow; */
+    /* border: red; */
+    font-family: serif;
 }

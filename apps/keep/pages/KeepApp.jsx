@@ -18,7 +18,8 @@ export class KeepApp extends React.Component {
     state = {
         notes: null,
         currIsTodo: false,//TODO - null
-        currTodo: null
+        currFocusId: null,
+        isEditTitleMode: false
     }
     componentDidMount() {
         this.loadNotes();
@@ -29,6 +30,8 @@ export class KeepApp extends React.Component {
                 this.setState({ notes })
                 console.log(notes)
             })
+        console.log(this.state.isEditTitleMode);
+
     }
     onTogglePin = (id) => {
         console.log(`${id} toggled`);
@@ -46,9 +49,9 @@ export class KeepApp extends React.Component {
     onHandleInput = () => {
 
     }
-    onAddTitle = () => {
-        noteService.addTitle()
-            .then(this.loadNotes);
+    onAddTitle = (id) => {
+        noteService.addTitle(id)
+            .then(() => this.onEnterTitleEditMode(id));
     }
     onAddURL = () => {
         noteService.addURL(id, url, type)
@@ -66,7 +69,7 @@ export class KeepApp extends React.Component {
         noteService.setTodo()
     }
     onCheck = (id) => {
-        noteService.checkTodoAt(id)
+        noteService.checkTodoAt(id, Date.now())
             .then(this.loadNotes);
 
     }
@@ -79,6 +82,30 @@ export class KeepApp extends React.Component {
         noteService.setContentTxt(id, target.value)
             .then(this.loadNotes);
     }
+    onSetTitle = (id, { value }) => {
+        noteService.setTitle(id, value)
+            .then(this.loadNotes)
+    }
+    onExitTitleEditMode = () => {
+        console.log('exited');
+        this.setState({ isEditTitleMode: false }, this.onBlurId);
+    }
+
+    onEnterTitleEditMode = (id) => {
+        console.log('entered', id);
+        this.setState({ isEditTitleMode: true }, () => this.onFocusId(id));
+    }
+    onFocusId = (id) => {
+        this.setState({ currFocusId: id }, this.loadNotes);
+        console.log('focus id:', id);
+
+
+    }
+    onBlurId = () => {
+        this.setState({ currFocusId: null }, this.loadNotes);
+        console.log('nulled focus');
+
+    }
     //  }
     // x = {
     //     addURL,
@@ -87,23 +114,31 @@ export class KeepApp extends React.Component {
     //     setURL,
     // }
     onSubmitMedia = (id, url, mediaType) => {
+        console.log('submit media url:',url);
+        
         const willBeOk = [noteService.setURL(id, url),
         noteService.setMediaType(id, mediaType)]
         Promise.all(willBeOk)
-            .then()
+            .then(prm=>console.log(prm))
+            .then(this.loadNotes);
     }
     render() {
-        const { onRemoveNote, onTogglePin, onHandleInput, onAddTitle,
-            onAddContent, onAddNote, onRemoveContent, onToggleTodoMode, onCheck,
-            onUpdateNoteTxt, onUnCheck } = this
-        const contentFuncs = { onCheck, onRemoveContent, onUpdateNoteTxt, onAddContent, onToggleTodoMode, onUnCheck }
-        const noteFuncs = { onRemoveNote, onTogglePin, onHandleInput, onAddContent, onAddTitle, contentFuncs }
-        const { notes } = this.state
+        const { onRemoveNote, onTogglePin, onHandleInput, onAddTitle, onSetTitle,
+            onExitTitleEditMode, onEnterTitleEditMode, onAddContent, onAddNote, onRemoveContent,
+            onToggleTodoMode, onCheck, onUpdateNoteTxt, onUnCheck,
+            onSubmitMedia } = this
+        const { notes, isEditTitleMode, currFocusId } = this.state
+        const contentFuncs = { onCheck, onRemoveContent, onUpdateNoteTxt, onAddContent, onToggleTodoMode, onUnCheck, currFocusId }
+        const noteProps = {
+            onRemoveNote, onTogglePin, onHandleInput, onAddContent,
+            onAddTitle, onSetTitle, onExitTitleEditMode, onEnterTitleEditMode, onSubmitMedia,
+            contentFuncs, isEditTitleMode, currFocusId
+        }
 
         return (
             <section className="keep">
                 <button className="add-note" onClick={onAddNote}>+</button>
-                <NoteList notes={notes} onAddNote={onAddNote} noteFuncs={noteFuncs} />
+                <NoteList notes={notes} onAddNote={onAddNote} noteProps={noteProps} />
             </section>
         );
     }
