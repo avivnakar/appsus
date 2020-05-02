@@ -1,0 +1,39 @@
+.email-preview section{
+    height: 2rem;
+    width: 900px;
+}
+
+.email-preview .sender{
+    width:150px;
+}
+
+/* .email-preview div{
+    display:flex;
+} */
+
+.email-preview .email-body{
+    color:lightgrey;
+    flex-grow: 1;
+}
+
+.email-preview .sent-at{
+    width:120px;
+}
+
+.email-preview .not-read{
+    font-weight: bold;
+}
+
+.expansion{
+    width: 900px;
+}
+
+
+
+.expansion .sender{
+    width:300px;
+}
+
+.expansion .subject{
+    width: 500px;
+}

@@ -1,3 +1,5 @@
+@import url('./pages/email-compose.css');
+@import url('./cmps/email-preview.css');
 
 .email-app{
     display: flex;

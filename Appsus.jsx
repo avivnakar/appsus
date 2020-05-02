@@ -1,7 +1,7 @@
 import Home from './pages/Home.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { EmailApp } from './apps/email/pages/EmailApp.jsx'
-import EmailDetails from './apps/email/pages/EmailDetails.jsx'
+import {EmailDetails} from './apps/email/pages/EmailDetails.jsx'
 import { BookApp } from './apps/bookypooky/pages/BookApp.jsx'
 import { BookDetails } from './apps/bookypooky/pages/BookDetails.jsx'
 // import BooksApp from '.apps/books/pages/BookApp.jsx'
@@ -22,6 +22,7 @@ export class Appsus extends React.Component {
                 <main>
                     {/* <Route component={DynamicMainCmp} path="/mail/:currSection" /> */}
                     <Route component={BookDetails} path="/book/:bookId" />
+                    <Route component={EmailDetails} path="/mail/:theEmailId" />
                     <Switch>
                         <Route component={AboutUs} path="/about" />
                         <Route component={EmailApp} path="/mail" />
@@ -29,7 +30,6 @@ export class Appsus extends React.Component {
                         <Route component={BookApp} path="/book" />
                         <Route component={Home} path="/" />
                     </Switch>
-                    {/* <Route component={EmailDetails} path="/mail/:theEmailId" /> */}
                     {/* <Route component={BooksApp} path="/books" /> */}
                 </main>
                 <hr />

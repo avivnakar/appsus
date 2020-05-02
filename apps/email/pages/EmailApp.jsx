@@ -16,8 +16,6 @@ export class EmailApp extends React.Component {
 
     componentDidMount() {
         this.loadEmails()
-        if (window.location.href.split('#')[1] === '/mail' || window.location.href.split('#')[1] === '/mail/')
-            window.location.href = '#/mail/inbox'
     }
 
     loadEmails() {
@@ -49,10 +47,10 @@ export class EmailApp extends React.Component {
                         <EmailStatus unRead={unReadCount} total={emails.length} />
                     </section>
                     <Switch>
-                        <Route path='/mail/inbox' component={() =>
+                        <Route exact path='/mail' component={() =>
                             <EmailList emails={emails} toggleEmailRead={this.toggleEmailRead} removeEmail={this.removeEmail} unReadCount={unReadCount} />} />
                         <Route component={EmailCompose} exact path="/mail/compose" />
-                        <Route component={EmailDetails} path="/mail/:theEmailId" />
+                        <Route component={EmailDetails} exact path="/mail/:theEmailId" />
                     </Switch>
                 </section>
             </Router>
